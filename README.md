@@ -1,6 +1,6 @@
 # gamehouse-halloween-pumpkins
 
-Halloween promotion for GameHouse.com: a pick-a-pumpkin popup game.
+Halloween promotion for GameHouse.com: two popup games, a pick-a-pumpkin game (`pumpkins.html`) and a "Spin to win" prize wheel (`wheel.html`, see below).
 
 ## What it does
 
