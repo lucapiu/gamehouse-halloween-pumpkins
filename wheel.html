@@ -1,0 +1,133 @@
+<!-- Halloween "Spin to win" prize wheel. Paste into a getsitecontrol custom-HTML widget. No external JS, no logos, no coupon code. -->
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+.ghw, .ghw * { box-sizing: border-box; }
+.ghw{margin:0 auto;font-family:"Nunito","Trebuchet MS",Arial,sans-serif;--orange:#ff7a1a;--amber:#ffb627;--purple:#6b2fa0;--night:#140a24;--ink:#fff4e0;position:relative;overflow:hidden;isolation:isolate;width:360px;max-width:100%;padding:26px 18px 26px;text-align:center;color:var(--ink);border-radius:16px;background:radial-gradient(ellipse at 50% 0%,#4a1d78 0%,#2a1250 45%,var(--night) 100%);border:3px solid var(--orange);box-shadow:0 0 0 4px #140a24,0 0 26px rgba(255,122,26,.35)}
+.ghw .ghw-title{margin:0 0 28px;font:400 40px/1 "Creepster","Impact",cursive;letter-spacing:1px;color:var(--orange);text-shadow:0 2px 0 #7a2a00,0 0 14px rgba(255,122,26,.55)}
+.ghw-stage{position:relative;width:min(300px,100%);margin:0 auto;aspect-ratio:1}
+.ghw .ghw-stage>svg:not(.ghw-ptr){display:block;width:100%;height:100%;overflow:visible}
+#ghw-rot{transform-origin:150px 150px;transform-box:view-box}
+.ghw-ptr{position:absolute;left:50%;top:-18px;transform-origin:50% 8%;width:34px;margin-left:-17px;filter:drop-shadow(0 3px 3px rgba(0,0,0,.5));z-index:2}
+.ghw-base{position:absolute;left:50%;top:50%;width:57px;height:57px;margin:-28.5px 0 0 -28.5px;border-radius:50%;z-index:2;background:#4a2a7a;border:3px solid #7a5aa8;box-shadow:0 0 0 4px #140a24}
+.ghw-hub{position:absolute;left:50%;top:50%;width:92px;height:92px;margin:-46px 0 0 -46px;border-radius:50%;z-index:3;border:4px solid var(--amber);cursor:pointer;font:900 20px/1 "Nunito",sans-serif;padding:0;letter-spacing:.5px;color:#2a0e00;background:radial-gradient(circle at 50% 35%,#ffa14a,var(--orange) 70%);box-shadow:0 0 0 4px #140a24,0 4px 14px rgba(0,0,0,.55),0 0 18px rgba(255,122,26,.6);animation:ghw-pulse 1.6s ease-in-out infinite}
+.ghw-hub:hover:not(:disabled){filter:brightness(1.1)}
+.ghw-hub:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.ghw .ghw-hub:disabled{transform:scale(.62);opacity:0;font-size:0;transition:transform .5s ease,opacity .5s ease;animation:none;cursor:default}
+@keyframes ghw-pulse{50%{transform:scale(1.07)}}
+.ghw-lead{margin:20px 0 6px;font:900 21px/1.15 "Nunito",sans-serif;color:var(--amber)}
+.ghw-copy{margin:0;font-weight:700;font-size:15px;line-height:1.4}
+.ghw-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);margin:0}
+.ghw-win{display:none}
+.ghw.ghw-state-win .ghw-play{display:none}.ghw.ghw-state-win .ghw-win{display:block}
+.ghw.ghw-state-win .ghw-title{display:none}
+.ghw-deal{display:block;width:230px;max-width:100%;margin:0 auto 18px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.4))}
+.ghw-win .ghw-prize{font:400 36px/1.05 "Creepster","Impact",cursive;color:var(--orange);text-shadow:0 2px 0 #7a2a00;margin:2px 0 10px;font-size:42px}
+.ghw .ghw-win p{margin:0 0 16px;font-weight:700}
+.ghw-cta{display:block;width:100%;padding:16px 12px;border-radius:12px;border:0;text-decoration:none;font:900 19px/1 "Nunito",sans-serif;text-transform:uppercase;color:#2a0e00;background:linear-gradient(#ffb627,var(--orange));box-shadow:0 4px 0 #a64a00,0 0 20px rgba(255,122,26,.5)}
+.ghw-cta:hover{filter:brightness(1.08)}.ghw-cta:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.ghw-pop{animation:ghw-pop .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes ghw-pop{from{transform:scale(.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){.ghw-hub,.ghw-pop{animation:none}}
+@media (max-width:380px){.ghw .ghw-title{font-size:34px}}
+</style>
+<div class="ghw" id="ghw-card" role="region" aria-labelledby="ghw-t">
+  <h2 class="ghw-title" id="ghw-t">Spin to win</h2>
+
+  <div class="ghw-play">
+    <div class="ghw-stage" id="ghw-wheelwrap">
+      <svg class="ghw-ptr" id="ghw-ptr" viewBox="0 0 34 40" aria-hidden="true"><path d="M2 3h30L17 38z" fill="#ffb627" stroke="#140a24" stroke-width="3" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 300 300" role="img" aria-label="Prize wheel with six segments">
+        <circle cx="150" cy="150" r="148" fill="#ffb627"/>
+        <circle cx="150" cy="150" r="140" fill="#140a24"/>
+        <g id="ghw-rot"></g>
+      </svg>
+      <div class="ghw-base" aria-hidden="true"></div>
+      <button class="ghw-hub" id="ghw-spin" type="button">SPIN</button>
+    </div>
+    <h3 class="ghw-lead">A Halloween treat awaits!</h3>
+    <p class="ghw-copy">Give the wheel a spin and unlock your biggest discount on an annual membership! No tricks, just treats.</p>
+    <p class="ghw-sr" id="ghw-status" aria-live="polite"></p>
+  </div>
+
+  <div class="ghw-win" id="ghw-winbox">
+    <h3 class="ghw-prize" id="ghw-prize"></h3>
+    <p>Boo! You&rsquo;ve Unlocked Our Best Deal!</p>
+    <svg class="ghw-deal" viewBox="0 0 280 120" role="img" aria-label="Over 40% off">
+      <path d="M62 60 8 24v72zM218 60l54-36v72z" fill="#6b2fa0"/>
+      <rect x="52" y="10" width="176" height="100" rx="50" fill="#8a44c4"/>
+      <path d="M140 10h38a50 50 0 0 1 0 100h-38z" fill="#6b2fa0" opacity=".55"/>
+      <path d="M78 26a50 50 0 0 1 24-12" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+      <text x="140" y="46" text-anchor="middle" font-family="Nunito,Arial,sans-serif" font-weight="900" font-size="17" fill="#ffd24d" letter-spacing="2">OVER</text>
+      <text x="140" y="85" text-anchor="middle" font-family="Nunito,Arial,sans-serif" font-weight="900" font-size="34" fill="#fff4e0">40% OFF</text>
+    </svg>
+    <a class="ghw-cta" id="ghw-claim" href="https://www.gamehouse.com/promo/2026-10-halloween-trick-or-treat-membership" target="_blank" rel="noopener">Claim your treat</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  // 6 segments, candy on even indexes, ghosts on odd. The wheel is just for fun:
+  // it always lands on a candy segment (never a ghost); every visitor gets the same offer.
+  var N=6, WIN_INDEX=2*Math.floor(Math.random()*(N/2)), STEP=360/N, C=150, R=140;
+  var reduce=matchMedia("(prefers-reduced-motion: reduce)");
+
+  // Same candy and ghost artwork as the pumpkin game (100x100 viewBox)
+  var CANDY='<path d="M24 50 6 36v28zM76 50l18-14v28z" fill="#6b2fa0"/><circle cx="50" cy="50" r="28" fill="#8a44c4"/><path d="M50 22a28 28 0 0 1 0 56z" fill="#6b2fa0"/><path d="M30 34a28 28 0 0 1 14-9" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".7"/><path d="M44 40l6-8 6 8 8 2-6 7 2 9-10-4-10 4 2-9-6-7z" fill="#ffd24d" transform="translate(0 2)"/>';
+  var GHOST='<path d="M18 90V48a32 32 0 0 1 64 0v42l-11-9-10 9-11-9-11 9-10-9z" fill="#e9f7dc"/><ellipse cx="38" cy="46" rx="6" ry="9" fill="#140a24"/><ellipse cx="62" cy="46" rx="6" ry="9" fill="#140a24"/><ellipse cx="50" cy="68" rx="7" ry="9" fill="#140a24"/>';
+
+  function pt(a,r){var t=(a-90)*Math.PI/180;return [C+r*Math.cos(t),C+r*Math.sin(t)]}
+  function build(g){
+    var h="";
+    for(var i=0;i<N;i++){
+      var a0=i*STEP-STEP/2,a1=i*STEP+STEP/2,p0=pt(a0,R),p1=pt(a1,R);
+      h+='<path d="M'+C+' '+C+'L'+p0[0].toFixed(2)+' '+p0[1].toFixed(2)+'A'+R+' '+R+' 0 0 1 '+p1[0].toFixed(2)+' '+p1[1].toFixed(2)+'Z" fill="'+(i%2?"#6b2fa0":"#ff7a1a")+'" stroke="#140a24" stroke-width="3"/>';
+    }
+    for(i=0;i<N;i++){
+      var ic=pt(i*STEP,95);
+      h+='<g transform="translate('+ic[0].toFixed(1)+' '+ic[1].toFixed(1)+') rotate('+(i*STEP)+')"><svg x="-32" y="-32" width="64" height="64" viewBox="0 0 100 100">'+(i%2?GHOST:CANDY)+'</svg></g>';
+    }
+    g.innerHTML=h;
+  }
+  build(document.getElementById("ghw-rot"));
+  // 12 pegs, one every 30deg: one on each slice border (the black lines) and one in the middle of each slice
+  var pegs="";
+  for(var k=0;k<12;k++){var q=pt(k*30,132);pegs+='<circle cx="'+q[0].toFixed(1)+'" cy="'+q[1].toFixed(1)+'" r="4" fill="#fff4e0" stroke="#ffb627" stroke-width="1.5"/>'}
+  document.getElementById("ghw-rot").insertAdjacentHTML("beforeend",pegs);
+
+  var rot=document.getElementById("ghw-rot"),btn=document.getElementById("ghw-spin"),st=document.getElementById("ghw-status"),card=document.getElementById("ghw-card"),busy=false;
+
+  function finish(){
+    document.getElementById("ghw-prize").textContent="You won a treat!";
+    card.classList.add("ghw-state-win");
+    document.getElementById("ghw-winbox").classList.add("ghw-pop");
+    document.getElementById("ghw-claim").focus({preventScroll:true});
+  }
+  var ptr=document.getElementById("ghw-ptr"),flick=0;
+  function setPtr(){ptr.style.transform="rotate("+(-flick)+"deg)"}
+  function spin(){
+    if(busy)return;busy=true;btn.disabled=true;btn.textContent="";
+    var T=360*4, W=WIN_INDEX*STEP;
+    // pointer reads wheel angle phi = -theta. One continuous move, no restart: a gentle start (the pointer has
+    // time to tilt back between pegs) and a long slow tail that crawls up to the border peg on a ghost,
+    // presses past it, and settles on the candy just beyond it.
+    var thF=T-(W+22+Math.random()*3);
+    if(reduce.matches){rot.style.transform="rotate("+thF+"deg)";st.textContent="You won a treat!";finish();return}
+    st.textContent="Spinning";
+    var DUR=8500, N_=800, cum=[0], i2, x, v, sm;
+    for(i2=1;i2<=N_;i2++){x=i2/N_;sm=Math.min(x/.2,1);sm=sm*sm*(3-2*sm);v=sm*Math.pow(1-x,3);cum.push(cum[i2-1]+v)}
+    function prog(t){var f=t*N_,k=Math.min(Math.floor(f),N_-1);return (cum[k]+(cum[k+1]-cum[k])*(f-k))/cum[N_]}
+    var t0=null,last=0,lastTs=0;
+    function frame(ts){
+      if(t0===null){t0=ts;lastTs=ts}
+      var el=Math.min(ts-t0,DUR), th=thF*prog(el/DUR), dt=ts-lastTs; lastTs=ts;
+      rot.style.transform="rotate("+th+"deg)";
+      var c=Math.floor(th/30); if(c>last){flick=Math.max(flick,24);last=c}   // a peg passed the pointer
+      flick*=Math.pow(.0002,dt/1000); if(flick<.3)flick=0; setPtr();
+      if(el<DUR){requestAnimationFrame(frame);return}
+      flick=0;setPtr();st.textContent="You won a treat!";setTimeout(finish,700);
+    }
+    requestAnimationFrame(frame);
+  }
+  btn.addEventListener("click",spin);
+})();
+</script>
