@@ -21,3 +21,24 @@ Halloween promotion for GameHouse.com: a pick-a-pumpkin popup game.
 5. Preview on desktop and mobile, then publish.
 
 To change the code, edit `COUPON` in the script and the `#ghp-code` text. To preview locally, open `pumpkins.html` in a browser.
+
+## Spin to win wheel
+
+`wheel.html` is a second, separate widget: a "Spin to win" prize wheel. Like the pumpkin game it is self-contained (inline HTML, CSS, JS; no logos, no backend, no tracking; the only external request is the Creepster and Nunito fonts from Google Fonts). All its classes and ids use a `ghw-` prefix, so it can sit on a page next to the pumpkin game without clashing. `pumpkins.html` is unchanged.
+
+- A six-slice wheel (orange and purple) with candy and ghost icons and 12 pegs. A pointer at the top flicks as each peg passes it. The visitor taps **SPIN** in the middle of the wheel.
+- The visitor always wins. The wheel always settles on a candy slice (never a ghost): it slows down on the last ghost, creeps past the final peg and stops on the candy. The spin takes about 8.5 seconds. With `prefers-reduced-motion` it skips the animation and goes straight to the result.
+- The win screen shows "You won a treat!", "Boo! You've Unlocked Our Best Deal!", a candy shape reading "OVER 40% OFF", and a **Claim your treat** button that opens the offer page in a new tab. There is no coupon code.
+- No close button and no trigger logic: getsitecontrol handles when the widget shows and how it is dismissed. Reloading the page re-spins the wheel.
+
+### Add it to getsitecontrol
+
+Same steps as for the pumpkin game: create a **Custom HTML** widget, paste the entire contents of `wheel.html`, choose targeting and triggers, make the widget background transparent and remove any default title or button, preview on desktop and mobile, then publish. To preview locally, open `wheel.html` in a browser (it renders as a bare card on the page's default background).
+
+### Where to edit things
+
+- **CTA link**: the `href` of the `<a class="ghw-cta" id="ghw-claim">` element, currently `https://www.gamehouse.com/promo/2026-10-halloween-trick-or-treat-membership`.
+- **"OVER 40% OFF" text**: the two `<text>` elements inside the `<svg class="ghw-deal">` candy shape (`OVER` and `40% OFF`).
+- **Win and copy text**: "Boo! You've Unlocked Our Best Deal!" is the `<p>` inside `.ghw-win`; the text under the wheel is in `.ghw-lead` and `.ghw-copy`.
+
+**The 40% figure must match the offer on the landing page.** Check the number against the promo page before publishing, and update it here whenever the offer changes.
