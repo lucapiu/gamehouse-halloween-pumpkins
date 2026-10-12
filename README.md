@@ -6,11 +6,11 @@ Halloween promotion for GameHouse.com: two popup games, a pick-a-pumpkin game (`
 
 `pumpkins.html` is a self-contained widget (inline HTML, CSS, JS; no logos, no backend, no tracking). The only external request is the Creepster and Nunito fonts from Google Fonts.
 
-- Nine pumpkins in a 3x3 grid. The visitor must find 3 treat pumpkins; "Treats" and "Threats" counters (each shown out of 3) update as they play. Threats never reaches 3/3: it stops at 2/3 at most.
+- Nine pumpkins in a 3x3 grid. The visitor must find 3 treat pumpkins. A short intro text sits under the "Pumpkin Pickin'" title, and a picks-left countdown under the grid reads "5 picks", "4 picks", "3 picks", "Only 2 picks!" and "Last pick!". The countdown is hidden once the third treat is found.
 - The visitor always wins. The script decides each outcome, not the pumpkin clicked: picks 1-4 hold exactly 2 treats and 2 threats in a random order (shuffled per play), and pick 5 is always a treat.
 - Each pumpkin flips to a candy treat or a spooky ghost, and revealed pumpkins are disabled.
-- On the third treat it reveals the code `SCARY2026` with a **Copy** button.
-- Full Halloween theme (twilight purple, pumpkin orange, Creepster headings from Google Fonts, inline SVG moon, bats and cobwebs). Responsive from phone to desktop, and honors `prefers-reduced-motion`.
+- On the third treat it shows "Boo! You've Unlocked Our Best Deal!", a candy shape reading "OVER 40% OFF", and a **Claim your treat** button that opens the offer page in a new tab. There is no coupon code.
+- Full Halloween theme (twilight purple, pumpkin orange, Creepster headings from Google Fonts, inline SVG cobwebs). Responsive from phone to desktop, and honors `prefers-reduced-motion`.
 
 ## Add it to getsitecontrol
 
@@ -20,11 +20,11 @@ Halloween promotion for GameHouse.com: two popup games, a pick-a-pumpkin game (`
 4. Set the widget background to transparent and remove any default title or button so only the game shows.
 5. Preview on desktop and mobile, then publish.
 
-To change the code, edit `COUPON` in the script and the `#ghp-code` text. To preview locally, open `pumpkins.html` in a browser.
+To change where the button goes, edit the `href` of the `<a class="ghp-cta" id="ghp-cta">` element (currently `https://www.gamehouse.com/promo/2026-10-halloween-trick-or-treat-membership`). To change the offer text, edit the two `<text>` elements (`OVER` and `40% OFF`) inside the `<svg class="deal">` candy shape. Keep the 40% figure in line with the offer on the landing page. To preview locally, open `pumpkins.html` in a browser.
 
 ## Spin to win wheel
 
-`wheel.html` is a second, separate widget: a "Spin to win" prize wheel. Like the pumpkin game it is self-contained (inline HTML, CSS, JS; no logos, no backend, no tracking; the only external request is the Creepster and Nunito fonts from Google Fonts). All its classes and ids use a `ghw-` prefix, so it can sit on a page next to the pumpkin game without clashing. `pumpkins.html` is unchanged.
+`wheel.html` is a second, separate widget: a "Spin to win" prize wheel. Like the pumpkin game it is self-contained (inline HTML, CSS, JS; no logos, no backend, no tracking; the only external request is the Creepster and Nunito fonts from Google Fonts). All its classes and ids use a `ghw-` prefix, so it can sit on a page next to the pumpkin game without clashing.
 
 - A six-slice wheel (orange and purple) with candy and ghost icons and 12 pegs. A pointer at the top flicks as each peg passes it. The visitor taps **SPIN** in the middle of the wheel.
 - The visitor always wins. The wheel always settles on a candy slice (never a ghost): it slows down on the last ghost, creeps past the final peg and stops on the candy. The spin takes about 8.5 seconds. With `prefers-reduced-motion` it skips the animation and goes straight to the result.
