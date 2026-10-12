@@ -12,12 +12,8 @@
   }
   .ghp > * { position: relative; z-index: 1; }
   .ghp-deco { position: absolute; z-index: 0; pointer-events: none; }
-  .ghp-moon { top: 6px; right: 8px; width: 46px; opacity: .95; animation: ghp-glow 4s ease-in-out infinite; }
   .ghp-web-l { top: 0; left: 0; width: 84px; opacity: .55; }
   .ghp-web-r { bottom: 0; right: 0; width: 84px; opacity: .45; transform: rotate(180deg); }
-  .ghp-bat { width: 38px; fill: #0b0514; }
-  .ghp-bat1 { top: 14px; left: 78px; animation: ghp-fly 6s ease-in-out infinite; }
-  .ghp-bat2 { top: 52px; right: 84px; width: 26px; animation: ghp-fly 7s ease-in-out -3s infinite; }
   .ghp h2 {
     margin: 0 0 6px; padding: 0 30px; font: 400 36px/1 "Creepster", "Chalkduster", Impact, fantasy; letter-spacing: 1.5px; color: var(--orange);
     text-shadow: 0 2px 0 #7a2d00, 0 0 18px rgba(255,122,26,.55);
@@ -28,7 +24,6 @@
     flex: 1; max-width: 160px; border-radius: 10px; padding: 6px 8px; background: rgba(0,0,0,.4);
     border: 2px solid var(--amber); font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;
   }
-  .ghp-stat.ghp-threat { border-color: #9be15d; }
   .ghp-stat b { display: block; font: 400 28px/1.1 "Creepster", "Chalkduster", Impact, fantasy; letter-spacing: 1px; }
   .ghp-stat.ghp-pop b { animation: ghp-pop .4s ease-out; }
   .ghp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 330px; margin: 0 auto; }
@@ -49,32 +44,28 @@
   @keyframes ghp-flip { 0% { transform: scale(.2) rotateY(90deg); opacity: 0; } 70% { transform: scale(1.15) rotateY(0); opacity: 1; } 100% { transform: scale(1); } }
   @keyframes ghp-shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
   @keyframes ghp-pop { 0% { transform: scale(1); } 40% { transform: scale(1.4); } 100% { transform: scale(1); } }
-  @keyframes ghp-glow { 0%,100% { filter: drop-shadow(0 0 6px rgba(255,236,170,.5)); } 50% { filter: drop-shadow(0 0 14px rgba(255,236,170,.9)); } }
-  @keyframes ghp-fly { 0%,100% { transform: translate(0,0); } 50% { transform: translate(10px,-8px); } }
   .ghp-bob { animation: ghp-bob 2.4s ease-in-out infinite; }
   .ghp-cell:nth-child(2n) .ghp-bob { animation-delay: -.8s; }
   .ghp-cell:nth-child(3n) .ghp-bob { animation-delay: -1.6s; }
   @keyframes ghp-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-  .ghp-msg { margin: 14px 0 0; min-height: 22px; font-size: 16px; font-weight: 900; color: var(--amber); }
+  .ghp-stats-below { margin: 14px auto 0; max-width: 330px; }
+  .ghp-stats-below .ghp-stat { max-width: none; white-space: nowrap; }
+  .ghp-msg { margin: 0 0 14px; padding: 10px 12px; color: var(--ink); }
+  .ghp-msg-title { font: 400 26px/1.1 "Creepster", "Chalkduster", Impact, fantasy; letter-spacing: 1px; color: var(--amber); margin-bottom: 4px; }
+  .ghp-msg-body { font-size: 15px; font-weight: 700; }
+  .ghp.ghp-won .ghp-stats { display: none; }
+  .ghp-result h2 { font-size: 42px; line-height: 1.05; margin: 2px 0 14px; padding: 0; }
+  .ghp-result .deal { display: block; width: 230px; max-width: 100%; margin: 0 auto 18px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.4)); }
+  .ghp-cta { display: block; width: 100%; padding: 16px 12px; border-radius: 12px; text-decoration: none; font: 900 19px/1 "Nunito", sans-serif; text-transform: uppercase; color: #2a0e00; background: linear-gradient(#ffb627, var(--orange)); box-shadow: 0 4px 0 #a64a00, 0 0 20px rgba(255,122,26,.5); }
+  .ghp-cta:hover { filter: brightness(1.08); }
+  .ghp-cta:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  .ghp.ghp-won .ghp-result { animation: ghp-winpop .5s cubic-bezier(.2,1.6,.4,1); }
+  @keyframes ghp-winpop { from { transform: scale(.6); opacity: 0; } }
   .ghp-result { display: none; margin-top: 12px; }
   .ghp.ghp-won .ghp-result { display: block; }
-  .ghp.ghp-won .ghp-intro { display: none; }
   .ghp-result p { margin-bottom: 0; }
-  .ghp-code { display: flex; gap: 8px; align-items: stretch; justify-content: center; margin: 12px auto 0; max-width: 340px; }
-  .ghp-code span {
-    flex: 1; background: var(--ink); color: var(--night); border: 3px dashed var(--orange); border-radius: 8px;
-    font: 900 24px "Nunito", Arial, sans-serif; letter-spacing: 2px; padding: 8px 10px; user-select: all;
-  }
-  .ghp-btn {
-    display: inline-block; border: 0; border-radius: 8px; padding: 8px 16px; font: 900 16px "Nunito", Arial, sans-serif;
-    text-transform: uppercase; color: #fff; background: var(--purple); cursor: pointer; box-shadow: 0 3px 0 #3d1a5e;
-  }
-  .ghp-btn:hover { background: #8a44c4; }
-  .ghp-btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
-  .ghp-note { margin-top: 10px; font-size: 14px; font-weight: 700; min-height: 18px; }
   @media (max-width: 380px) {
-    .ghp { padding: 22px 14px 24px; } .ghp h2 { font-size: 30px; padding: 0 22px; } .ghp-code span { font-size: 20px; } .ghp-grid { gap: 8px; }
-    .ghp-bat1 { left: 56px; }
+    .ghp { padding: 22px 14px 24px; } .ghp h2 { font-size: 30px; padding: 0 22px; } .ghp-grid { gap: 8px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .ghp *, .ghp *::before, .ghp *::after { animation: none !important; transition: none !important; }
@@ -84,37 +75,34 @@
 <div class="ghp" id="ghp">
   <svg class="ghp-deco ghp-web-l" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="#d9c8f0" stroke-width="1.2"><path d="M0 0v100M0 0l100 100M0 0h100M0 0l60 100M0 0l100 60"/><path d="M0 22q22 4 30-22M0 44q40 8 52-44M0 68q58 10 76-68M0 92q76 12 100-92"/></svg>
   <svg class="ghp-deco ghp-web-r" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="#d9c8f0" stroke-width="1.2"><path d="M0 0v100M0 0l100 100M0 0h100M0 0l60 100M0 0l100 60"/><path d="M0 22q22 4 30-22M0 44q40 8 52-44M0 68q58 10 76-68M0 92q76 12 100-92"/></svg>
-  <svg class="ghp-deco ghp-moon" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" fill="#ffecaa"/><circle cx="36" cy="38" r="8" fill="#f2d27a"/><circle cx="62" cy="62" r="11" fill="#f2d27a"/><circle cx="64" cy="30" r="5" fill="#f2d27a"/></svg>
-  <svg class="ghp-deco ghp-bat ghp-bat1" viewBox="0 0 60 30" aria-hidden="true"><path d="M30 8l3-6 2 6c6-8 15-8 25-4-4 4-4 10-8 12-3-2-6-2-9 2-2-3-5-4-8-1-1 3-3 4-5 4s-4-1-5-4c-3-3-6-2-8 1-3-4-6-4-9-2-4-2-4-8-8-12 10-4 19-4 25 4l2-6z"/></svg>
-  <svg class="ghp-deco ghp-bat ghp-bat2" viewBox="0 0 60 30" aria-hidden="true"><path d="M30 8l3-6 2 6c6-8 15-8 25-4-4 4-4 10-8 12-3-2-6-2-9 2-2-3-5-4-8-1-1 3-3 4-5 4s-4-1-5-4c-3-3-6-2-8 1-3-4-6-4-9-2-4-2-4-8-8-12 10-4 19-4 25 4l2-6z"/></svg>
 
-  <h2>Pumpkin Patch Picks</h2>
-  <p class="ghp-intro">Find 3 treats and dodge the threats. Everyone wins!</p>
-  <div class="ghp-stats" aria-hidden="true">
-    <div class="ghp-stat">Treats<b id="ghp-wins">0 / 3</b></div>
-    <div class="ghp-stat ghp-threat">Threats<b id="ghp-misses">0 / 3</b></div>
-  </div>
+  <h2>Pumpkin Pickin'</h2>
+  <div class="ghp-msg" id="ghp-msg"><div class="ghp-msg-body">Find the 3 treats and dodge the threats. Unlock your biggest discount on an annual membership! No tricks, just treats.</div></div>
   <div class="ghp-grid" id="ghp-grid" role="group" aria-label="Nine pumpkins"></div>
-  <div class="ghp-msg" id="ghp-msg" aria-live="polite">Pick a pumpkin to start.</div>
+  <div class="ghp-stats ghp-stats-below" aria-live="polite">
+    <div class="ghp-stat"><b id="ghp-left">5 picks</b></div>
+  </div>
   <div class="ghp-result" id="ghp-result">
-    <h2>You found all the treats!</h2>
-    <p>Use this code at checkout:</p>
-    <div class="ghp-code">
-      <span id="ghp-code">SCARY2026</span>
-      <button type="button" class="ghp-btn" id="ghp-copy">Copy</button>
-    </div>
-    <div class="ghp-note" id="ghp-note" aria-live="polite"></div>
+    <h2>Boo! You’ve Unlocked Our Best Deal!</h2>
+    <svg class="deal" viewBox="0 0 280 120" role="img" aria-label="Over 40% off">
+      <path d="M62 60 8 24v72zM218 60l54-36v72z" fill="#6b2fa0"/>
+      <rect x="52" y="10" width="176" height="100" rx="50" fill="#8a44c4"/>
+      <path d="M140 10h38a50 50 0 0 1 0 100h-38z" fill="#6b2fa0" opacity=".55"/>
+      <path d="M78 26a50 50 0 0 1 24-12" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+      <text x="140" y="46" text-anchor="middle" font-family="Nunito,Arial,sans-serif" font-weight="900" font-size="17" fill="#ffd24d" letter-spacing="2">OVER</text>
+      <text x="140" y="85" text-anchor="middle" font-family="Nunito,Arial,sans-serif" font-weight="900" font-size="34" fill="#fff4e0">40% OFF</text>
+    </svg>
+    <a class="ghp-cta" id="ghp-cta" href="https://www.gamehouse.com/promo/2026-10-halloween-trick-or-treat-membership" target="_blank" rel="noopener">Claim your treat</a>
   </div>
 </div>
 
 <script>
 (function () {
-  // The Threats counter is shown out of 3 but, by design, the game never reaches it: at most 2 threats are ever revealed.
-  var COUPON = "SCARY2026", TREATS_NEEDED = 3, THREATS_SHOWN_MAX = 3;
+  // The game always lasts exactly 5 picks: picks 1-4 hold 2 treats and 2 threats, pick 5 is the third treat.
+  var TREATS_NEEDED = 3, TOTAL_PICKS = 5;
   var root = document.getElementById("ghp"), grid = document.getElementById("ghp-grid"),
-      winsEl = document.getElementById("ghp-wins"), missesEl = document.getElementById("ghp-misses"),
-      msg = document.getElementById("ghp-msg"), copyBtn = document.getElementById("ghp-copy"),
-      note = document.getElementById("ghp-note"), cells = [], picks = 0, wins = 0, misses = 0, outcomes = [];
+      leftEl = document.getElementById("ghp-left"),
+      cta = document.getElementById("ghp-cta"), cells = [], picks = 0, wins = 0, misses = 0, outcomes = [];
 
   var PUMPKIN = '<svg viewBox="0 0 100 100" class="ghp-bob" aria-hidden="true">' +
     '<path d="M50 24c-4-8-2-14 4-17" fill="none" stroke="#5aa832" stroke-width="6" stroke-linecap="round"/>' +
@@ -147,15 +135,13 @@
     cell.classList.add(win ? "ghp-win" : "ghp-miss");
     cell.innerHTML = win ? TREAT : GHOST;
     cell.setAttribute("aria-label", win ? "Treat!" : "Threat!");
-    if (win) { wins++; winsEl.textContent = wins + " / " + TREATS_NEEDED; bump(winsEl); }
-    else { misses++; missesEl.textContent = misses + " / " + THREATS_SHOWN_MAX; bump(missesEl); }
+    if (win) wins++; else misses++;
+    var left = TOTAL_PICKS - picks;
+    leftEl.textContent = left === 1 ? "Last pick!" : left === 2 ? "Only 2 picks!" : left + " picks"; bump(leftEl);
     if (wins >= TREATS_NEEDED) {
       cells.forEach(function (c) { c.disabled = true; c.classList.add("ghp-lock"); });
-      msg.textContent = "Third treat found!";
       root.classList.add("ghp-won");
-      setTimeout(function () { copyBtn.focus(); }, 0);
-    } else {
-      msg.textContent = win ? "A treat! " + wins + " of " + TREATS_NEEDED + " found." : "Boo! A threat. " + misses + " so far.";
+      setTimeout(function () { cta.focus(); }, 0);
     }
   }
 
@@ -166,17 +152,5 @@
     b.addEventListener("click", (function (el) { return function () { pick(el); }; })(b));
     grid.appendChild(b); cells.push(b);
   }
-
-  copyBtn.addEventListener("click", function () {
-    function ok() { note.textContent = "Code copied!"; copyBtn.textContent = "Copied"; }
-    function fallback() {
-      var r = document.createRange(); r.selectNodeContents(document.getElementById("ghp-code"));
-      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      try { document.execCommand("copy") ? ok() : (note.textContent = "Press Ctrl/Cmd+C to copy"); }
-      catch (e) { note.textContent = "Press Ctrl/Cmd+C to copy"; }
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(COUPON).then(ok, fallback);
-    else fallback();
-  });
 })();
 </script>
